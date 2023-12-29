@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:menus_shibeen/common/widgets/consts.dart';
+import 'package:menus_shibeen/features/home/data/rebos/home_rebo_imple.dart';
+import 'package:menus_shibeen/features/home/presentation/manager/all_places_cubit/all_places_cubit.dart';
+import 'package:menus_shibeen/features/home/presentation/manager/recommended_places_cubit/recommended_places_cubit.dart';
 import 'package:menus_shibeen/models/place.dart';
+import 'package:menus_shibeen/utils/functions.dart';
+import 'package:menus_shibeen/utils/simple%20bloc%20observer.dart';
 
 void main() async {
+  setupServiceLocator();
   await Hive.initFlutter();
   Hive.registerAdapter(PlaceAdapter());
+
   await Hive.openBox(kRecommendedPlacesBox);
   await Hive.openBox(kAllPlacesBox);
-
+  Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
+
+// void setup() {
+//   getIt.registerSingleton<Place>(());
+
+// // Alternatively you could write it if you don't like global variables
+//   GetIt.I.registerSingleton<Place>(AppModel());
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,28 +33,39 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (context) =>
+                AllPlacesCubit(getIt.get<HomeReboImple>())..fetchAllPlaces()),
+        BlocProvider(
+            create: (context) =>
+                RecommendedPlacesCubit(getIt.get<HomeReboImple>())
+                  ..fetchRecommendedPlaces())
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // TRY THIS: Try running your application with "flutter run". You'll see
+          // the application has a purple toolbar. Then, without quitting the app,
+          // try changing the seedColor in the colorScheme below to Colors.green
+          // and then invoke "hot reload" (save your changes or press the "hot
+          // reload" button in a Flutter-supported IDE, or press "r" if you used
+          // the command line to start the app).
+          //
+          // Notice that the counter didn't reset back to zero; the application
+          // state is not lost during the reload. To reset the state, use hot
+          // restart instead.
+          //
+          // This works for code too, not just values: Most code changes can be
+          // tested with just a hot reload.
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

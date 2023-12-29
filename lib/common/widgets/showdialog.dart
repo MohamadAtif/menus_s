@@ -1,11 +1,11 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 // // // import 'package:fluttertoast/fluttertoast.dart';
 // import 'package:toast/toast.dart';
 
-// // // showSnack(BuildContext context) {
-// // //   ScaffoldMessenger.of(context)
-// // //       .showSnackBar(const SnackBar(content: Text('Success')));
-// // // }
+showSnack(BuildContext context) {
+  ScaffoldMessenger.of(context)
+      .showSnackBar(const SnackBar(content: Text('Success')));
+}
 
 // alertDialogToast(String toastMsg, Color color) {
 //   Toast.show(toastMsg,
