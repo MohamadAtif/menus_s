@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menus_shibeen/common/widgets/search_container.dart';
 import 'package:menus_shibeen/features/home/presentation/screens/widgets/allplacesListView_bloc_builder.dart';
+import 'package:menus_shibeen/features/home/presentation/screens/widgets/allproductslistview_bloc_builder.dart';
 import 'package:menus_shibeen/features/home/presentation/screens/widgets/productCardHome.dart';
 import 'package:menus_shibeen/features/home/presentation/screens/widgets/top_categories.dart';
 import 'package:menus_shibeen/utils/global_variables.dart';
@@ -50,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             ProductCardOfHomePage(),
-            AllPlacesListViewBlocBuilder()
+            AllProductsListViewBlocBuilder()
 
             // CollectionCategory()
             // BestSellerProduct(),

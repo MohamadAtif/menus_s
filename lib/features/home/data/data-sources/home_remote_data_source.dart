@@ -1,12 +1,13 @@
-import 'package:hive/hive.dart';
 import 'package:menus_shibeen/common/widgets/consts.dart';
 import 'package:menus_shibeen/models/place.dart';
+import 'package:menus_shibeen/models/product.dart';
 import 'package:menus_shibeen/services/api_service.dart';
 import 'package:menus_shibeen/utils/functions.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<Place>> fetchPlaces();
   Future<List<Place>> fetchRecommendedPlaces();
+  Future<List<Product>> fetchTopRatedProducts();
 }
 
 class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
@@ -16,7 +17,7 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
   @override
   Future<List<Place>> fetchPlaces() async {
     var data = await apiService.get(endPoint: '/api/get-all-places');
-    List<Place> places = getBooksList(data);
+    List<Place> places = getPlacesList(data);
 
     //cash places data in local box by hive
     savePlacesDataByHive(places, kAllPlacesBox);
@@ -28,17 +29,31 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
   Future<List<Place>> fetchRecommendedPlaces() async {
     var data = await apiService.get(endPoint: '/api/top-rated-places');
 
-    List<Place> places = getBooksList(data);
+    List<Place> places = getPlacesList(data);
 
     savePlacesDataByHive(places, kRecommendedPlacesBox);
     return places;
   }
 
+  @override
+  Future<List<Product>> fetchTopRatedProducts() async {
+    var data = await apiService.get(endPoint: '/api/top-rated');
+
+    List<Product> products = [];
+
+    for (var item in data['products']) {
+      products.add(Product.fromJson(item));
+    }
+
+    saveProductsDataByHive(products, kTopRatedProductsBox);
+    return products;
+  }
+
 ////////////////
   ///
-  List<Place> getBooksList(Map<String, dynamic> data) {
+  List<Place> getPlacesList(Map<String, dynamic> data) {
     List<Place> places = [];
-    for (var item in data['Place']) {
+    for (var item in data['places']) {
       places.add(Place.fromJson(item));
     }
     return places;

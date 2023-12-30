@@ -8,6 +8,7 @@ const authRouter = require("./routes/auth");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
 const searchRouter = require("./routes/search");
+const placeRouter = require("./routes/place");
 
 // middleware
 app.use(express.json());
@@ -16,14 +17,15 @@ app.use(adminRouter);
 app.use(productRouter);
 app.use(userRouter);
 app.use(searchRouter);
+app.use(placeRouter);
 
 // Connections
 mongoose.connect('mongodb+srv://mohamad:mohamad@cluster0.razkqoh.mongodb.net/').then(()=>{
     console.log('connected On DataBase succefully')
 }).catch((error)=>{console.log('error on connecting',error)});
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
-app.listen(3000,"0.0.0.0", () => {
+app.listen(4000,"0.0.0.0", () => {
   console.log(`connected at port ${PORT}`);
 });

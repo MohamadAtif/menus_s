@@ -5,6 +5,7 @@ import 'package:menus_shibeen/core/rebos/home_rebo.dart';
 import 'package:menus_shibeen/features/home/data/data-sources/home_local_data_source.dart';
 import 'package:menus_shibeen/features/home/data/data-sources/home_remote_data_source.dart';
 import 'package:menus_shibeen/models/place.dart';
+import 'package:menus_shibeen/models/product.dart';
 
 class HomeReboImple extends HomeRebo {
   final HomeLocalDataSource homeLocalDataSource;
@@ -40,6 +41,24 @@ class HomeReboImple extends HomeRebo {
       }
       places = await homeRemoteDataSource.fetchRecommendedPlaces();
       return right(places);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFaliure.formDioException(e));
+      }
+      return left(ServerFaliure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Product>>> fetchTopRatedProducts() async {
+    List<Product> products;
+    try {
+      products = homeLocalDataSource.fetchTopRatedProducts();
+      if (products.isNotEmpty) {
+        return right(products);
+      }
+      products = await homeRemoteDataSource.fetchTopRatedProducts();
+      return right(products);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFaliure.formDioException(e));

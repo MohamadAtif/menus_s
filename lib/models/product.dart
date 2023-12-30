@@ -1,15 +1,27 @@
 import 'dart:convert';
 
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:menus_shibeen/models/rating.dart';
 
+part 'product.g.dart';
+
+@HiveType(typeId: 1)
 class Product {
+  @HiveField(0)
   final String name;
+  @HiveField(1)
   final String description;
+  @HiveField(2)
   final double quantity;
+  @HiveField(3)
   final List<String> images;
+  @HiveField(4)
   final String category;
+  @HiveField(5)
   final double price;
+  @HiveField(6)
   final String? id;
+  @HiveField(7)
   final List<Rating>? rating;
   Product({
     required this.name,

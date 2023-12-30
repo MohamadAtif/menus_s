@@ -1,4 +1,5 @@
 const { Product } = require("../models/product");
+const {Place}=require("../models/place");
 const Order = require("../models/order");
 const { fetchCategoryWiseProduct } = require("../logic/adminLogic");
 
@@ -40,6 +41,46 @@ module.exports={
           res.status(500).json({ error: e.message });
         }
       },
+      /////////////////////////////places
+      addPlace: async (req, res) => {
+        try {
+          const { name, description, images,location, category } = req.body;
+          let place = new Place({
+            name,
+            description,
+            location,
+            images,
+            category,
+          });
+          place = await place.save();
+          res.json(place);
+        } catch (e) {
+          res.status(500).json({ error: e.message });
+        }
+      },
+      
+
+      getAllPlacesByAdmin: async (req, res) => {
+        try {
+          const places = await Place.find({});
+          res.json(places);
+        } catch (e) {
+          res.status(500).json({ error: e.message });
+        }
+      },
+
+      deletePlace: async (req, res) => {
+        try {
+          const { id } = req.body;
+          let place = await Place.findByIdAndDelete(id);
+          res.json(place);
+        } catch (e) {
+          res.status(500).json({ error: e.message });
+        }
+      },
+
+      //////////orders
+
       getOrdersByAdmin: async (req, res) => {
         try {
           const orders = await Order.find({});

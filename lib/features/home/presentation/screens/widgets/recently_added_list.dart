@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:menus_shibeen/common/widgets/single_product.dart';
-import 'package:menus_shibeen/models/place.dart';
+import 'package:menus_shibeen/models/product.dart';
 
-class AllProductsListView extends StatefulWidget {
-  const AllProductsListView({super.key});
+class TopRatedProductsListView extends StatefulWidget {
+  const TopRatedProductsListView({super.key});
 
   @override
-  State<AllProductsListView> createState() => _AllProductsListViewState();
+  State<TopRatedProductsListView> createState() =>
+      _TopRatedProductsListViewState();
 }
 
-class _AllProductsListViewState extends State<AllProductsListView> {
-  List<Place>? productList;
+class _TopRatedProductsListViewState extends State<TopRatedProductsListView> {
+  List<Product>? productList;
 
   // final HomeServices homeServices = HomeServices();
 
