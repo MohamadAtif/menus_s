@@ -37,12 +37,13 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
 
   @override
   Future<List<Product>> fetchTopRatedProducts() async {
-    var data = await apiService.get(endPoint: '/api/top-rated');
+    var data = await apiService.get(endPoint: '/api/get-all-products');
 
     List<Product> products = [];
 
     for (var item in data['products']) {
       products.add(Product.fromJson(item));
+      print(products);
     }
 
     saveProductsDataByHive(products, kTopRatedProductsBox);

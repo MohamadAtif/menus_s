@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:menus_shibeen/core/failure_rebo.dart';
-import 'package:menus_shibeen/core/rebos/home_rebo.dart';
+import 'package:menus_shibeen/domain/failure_rebo.dart';
+import 'package:menus_shibeen/domain/rebos/home_rebo.dart';
 import 'package:menus_shibeen/features/home/data/data-sources/home_local_data_source.dart';
 import 'package:menus_shibeen/features/home/data/data-sources/home_remote_data_source.dart';
 import 'package:menus_shibeen/models/place.dart';

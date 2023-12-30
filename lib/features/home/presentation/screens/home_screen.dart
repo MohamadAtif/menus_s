@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            ProductCardOfHomePage(),
+            // ProductCardOfHomePage(),
             AllProductsListViewBlocBuilder()
 
             // CollectionCategory()

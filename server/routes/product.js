@@ -4,7 +4,7 @@ const auth = require("../middlewares/auth");
 const { getAllProducts, getAllProductsByCategory, rateProduct, getTopRated } = require("../controllers/productController");
 
 
-productRouter.get("/api/get-all-products",auth, getAllProducts);
+productRouter.get("/api/get-all-products", getAllProducts);
 
 productRouter.get("/api/products/", auth, getAllProductsByCategory);
 

@@ -7,6 +7,7 @@ import 'package:menus_shibeen/common/widgets/bottom_bar.dart';
 import 'package:menus_shibeen/common/widgets/consts.dart';
 import 'package:menus_shibeen/features/home/data/rebos/home_rebo_imple.dart';
 import 'package:menus_shibeen/features/home/presentation/manager/all_places_cubit/all_places_cubit.dart';
+import 'package:menus_shibeen/features/home/presentation/manager/all_products_cubit/toprated_products_cubit.dart';
 import 'package:menus_shibeen/features/home/presentation/manager/recommended_places_cubit/recommended_places_cubit.dart';
 import 'package:menus_shibeen/models/place.dart';
 import 'package:menus_shibeen/models/product.dart';
@@ -16,7 +17,6 @@ import 'package:menus_shibeen/utils/user_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  runApp(const MyApp());
   // ChangeNotifierProvider(
   //   create: (context) => UserProvider(),
   // );
@@ -25,10 +25,11 @@ void main() async {
   Hive.registerAdapter(PlaceAdapter());
   Hive.registerAdapter(ProductAdapter());
 
-  await Hive.openBox(kRecommendedPlacesBox);
-  await Hive.openBox(kAllPlacesBox);
-  await Hive.openBox(kTopRatedProductsBox);
+  await Hive.openBox<Place>(kRecommendedPlacesBox);
+  await Hive.openBox<Place>(kAllPlacesBox);
+  await Hive.openBox<Product>(kTopRatedProductsBox);
   Bloc.observer = SimpleBlocObserver();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -57,10 +58,15 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(
             create: (context) =>
                 RecommendedPlacesCubit(getIt.get<HomeReboImple>())
-                  ..fetchRecommendedPlaces())
+                  ..fetchRecommendedPlaces()),
+        BlocProvider(
+            create: (context) =>
+                TopRatedProductsCubit(getIt.get<HomeReboImple>())
+                  ..fetchTopRatedProducts())
       ],
-      child: MaterialApp(
-          title: 'Flutter Demo', theme: ThemeData(), home: const BottomBar()),
+      child: const MaterialApp(
+          // title: 'Flutter Demo', theme: ThemeData(),
+          home: BottomBar()),
     );
   }
 }

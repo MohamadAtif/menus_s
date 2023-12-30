@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:menus_shibeen/auth/screens/registePage.dart';
+import 'package:menus_shibeen/features/home/presentation/screens/home_screen.dart';
 import 'package:menus_shibeen/utils/global_variables.dart';
 
 import '../../../common/widgets/custom_button.dart';
@@ -221,11 +222,12 @@ class _AuthScreenState extends State<AuthScreen> {
                                       if (_signInFormKey.currentState!
                                           .validate()) {
                                         signInUser();
-                                        // Navigator.pushAndRemoveUntil(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) => const HomeScreen()),
-                                        //     (route) => false);
+                                        Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const HomeScreen()),
+                                            (route) => false);
                                       }
                                     },
                                   ),
