@@ -5,7 +5,7 @@ import 'package:menus_shibeen/models/rating.dart';
 
 part 'place.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class Place {
   @HiveField(0)
   final String name;

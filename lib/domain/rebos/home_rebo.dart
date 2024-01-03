@@ -7,4 +7,5 @@ abstract class HomeRebo {
   Future<Either<Failure, List<Place>>> fetchPlaces();
   Future<Either<Failure, List<Place>>> fetchRecommendedPlaces();
   Future<Either<Failure, List<Product>>> fetchTopRatedProducts();
+  // Future<Either<Failure, List<Product>>> fetchAllProducts();
 }

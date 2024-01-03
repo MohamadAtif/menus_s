@@ -51,8 +51,8 @@ class HomeReboImple extends HomeRebo {
 
   @override
   Future<Either<Failure, List<Product>>> fetchTopRatedProducts() async {
-    List<Product> products;
     try {
+      List<Product> products;
       products = homeLocalDataSource.fetchTopRatedProducts();
       if (products.isNotEmpty) {
         return right(products);

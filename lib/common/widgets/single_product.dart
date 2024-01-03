@@ -21,8 +21,8 @@ class SingleProduct extends StatelessWidget {
         Column(
       children: [
         CachedNetworkImage(
-          height: 130,
-          width: 120,
+          height: 182,
+          width: 163,
           imageUrl: image,
           // s
         ),

@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:menus_shibeen/models/rating.dart';
 
 part 'product.g.dart';
 
-@HiveType(typeId: 1)
-class Product {
+@HiveType(typeId: 0)
+class Product extends HiveObject {
   @HiveField(0)
   final String name;
   @HiveField(1)

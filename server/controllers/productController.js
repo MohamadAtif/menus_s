@@ -11,7 +11,7 @@ module.exports={
           // var limit = parseInt(req.body.limit);
           // var skip = (parseInt(req.body.page)-1) * parseInt(limit);
           const products = await Product.find({}).sort({dateCreated: -1}).limit(limit);
-          res.json(products);
+          res.json({products});
        
         } catch (e) {
           res.status(500).json({ error: e.message });
@@ -24,7 +24,7 @@ module.exports={
            var limit = parseInt(req.body.limit);
           var skip = (parseInt(page)-1) * parseInt(limit);
           const products = await Product.find({ category: req.query.category }).skip(skip).limit(limit);
-          res.json(products);
+          res.json({products});
           // console.log(products);
         } catch (e) {
           res.status(500).json({ error: e.message });
@@ -56,7 +56,7 @@ module.exports={
       
           product.ratings.push(ratingSchema);
           product = await product.save();
-          res.json(product);
+          res.json({products});
         } catch (e) {
           res.status(500).json({ error: e.message });
         }
@@ -84,7 +84,7 @@ module.exports={
             return aSum < bSum ? 1 : -1;
           });
       
-          res.json(products[0]);
+          res.json({products : products[0]});
           
 
         } catch (e) {

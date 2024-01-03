@@ -1,8 +1,14 @@
 import 'dart:convert';
+import 'package:hive/hive.dart';
+part 'rating.g.dart';
 
-class Rating {
+@HiveType(typeId: 2)
+class Rating extends HiveObject {
+  @HiveField(0)
   final String userId;
+  @HiveField(1)
   final double rating;
+
   Rating({
     required this.userId,
     required this.rating,
@@ -18,6 +24,7 @@ class Rating {
   factory Rating.fromMap(Map<String, dynamic> map) {
     return Rating(
       userId: map['userId'] ?? '',
+      // rating: map['rating'] ?? 0,
       rating: map['rating']?.toDouble() ?? 0.0,
     );
   }

@@ -39,24 +39,35 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
   Future<List<Product>> fetchTopRatedProducts() async {
     var data = await apiService.get(endPoint: '/api/get-all-products');
 
-    List<Product> products = [];
-
-    for (var item in data['products']) {
-      products.add(Product.fromJson(item));
-      print(products);
-    }
-
+    List<Product> products = getProductsList(data);
+    // var box = Hive.box<Product>(kTopRatedProductsBox);
+    // box.addAll(products);
+    print('lessa');
     saveProductsDataByHive(products, kTopRatedProductsBox);
+    print('doneeeee');
+
     return products;
   }
 
 ////////////////
   ///
+  ///
+  ///
+  ///
   List<Place> getPlacesList(Map<String, dynamic> data) {
     List<Place> places = [];
     for (var item in data['places']) {
-      places.add(Place.fromJson(item));
+      places.add(Place.fromMap(item));
     }
     return places;
+  }
+
+  List<Product> getProductsList(Map<String, dynamic> data) {
+    List<Product> products = [];
+
+    for (var item in data['products']) {
+      products.add(Product.fromMap(item));
+    }
+    return products;
   }
 }
