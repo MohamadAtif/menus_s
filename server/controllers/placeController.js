@@ -9,7 +9,7 @@ module.exports={
         try {
         //    var limit= parseInt(100)
           const places = await Place.find({})
-          res.json(places);
+          res.json({places});
        
         } catch (e) {
           res.status(500).json({ error: e.message });
@@ -21,9 +21,9 @@ module.exports={
           var page= parseInt(req.body.page) ;
            var limit = parseInt(req.body.limit);
           var skip = (parseInt(page)-1) * parseInt(limit);
-          const products = await Place.find({ category: req.query.category }).skip(skip).limit(limit);
-          res.json(products);
-          // console.log(products);
+          const places = await Place.find({ category: req.query.category }).skip(skip).limit(limit);
+          res.json({places: places});
+          
         } catch (e) {
           res.status(500).json({ error: e.message });
         }
@@ -54,7 +54,7 @@ module.exports={
       
           place.ratings.push(ratingSchema);
           place = await place.save();
-          res.json(place);
+          res.json({place});
         } catch (e) {
           res.status(500).json({ error: e.message });
         }
@@ -82,7 +82,7 @@ module.exports={
             return aSum < bSum ? 1 : -1;
           });
       
-          res.json(places[0]);
+          res.json({places});
           
 
         } catch (e) {

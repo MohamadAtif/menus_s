@@ -28,9 +28,12 @@ module.exports={
   },
 
   signIn: async (req,res)=>{
+    console.log ('user');
     try {
+     
        const{email,password}=req.body;
        const user = await User.findOne({email}); 
+       console.log ({user});
      if(!user){
       return res.status(400).json({msg:'User with this Email does not Exist!'})
      }
@@ -40,6 +43,7 @@ module.exports={
      }
     const token= jwt.sign({id:user._id},"passwordKey");
    res.json({token,...user._doc});
+  
  
     } catch (e) {
        res.status(500).json({
@@ -57,6 +61,7 @@ module.exports={
       const user=await User.findById(verified.id);
       if(!user)res.json(false);
       res.json(true);
+
  
     } catch (e) {
        res.status(500).json({

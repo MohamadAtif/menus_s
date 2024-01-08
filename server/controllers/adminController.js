@@ -17,7 +17,7 @@ module.exports={
             category,
           });
           product = await product.save();
-          res.json(product);
+          res.json({product});
         } catch (e) {
           res.status(500).json({ error: e.message });
         }
@@ -26,7 +26,7 @@ module.exports={
       getAllProductByAdmin: async (req, res) => {
         try {
           const products = await Product.find({});
-          res.json(products);
+          res.json({products});
         } catch (e) {
           res.status(500).json({ error: e.message });
         }
@@ -36,7 +36,7 @@ module.exports={
         try {
           const { id } = req.body;
           let product = await Product.findByIdAndDelete(id);
-          res.json(product);
+          res.json({product});
         } catch (e) {
           res.status(500).json({ error: e.message });
         }
@@ -53,7 +53,7 @@ module.exports={
             category,
           });
           place = await place.save();
-          res.json(place);
+          res.json({place});
         } catch (e) {
           res.status(500).json({ error: e.message });
         }
@@ -63,7 +63,7 @@ module.exports={
       getAllPlacesByAdmin: async (req, res) => {
         try {
           const places = await Place.find({});
-          res.json(places);
+          res.json({places});
         } catch (e) {
           res.status(500).json({ error: e.message });
         }
@@ -73,7 +73,7 @@ module.exports={
         try {
           const { id } = req.body;
           let place = await Place.findByIdAndDelete(id);
-          res.json(place);
+          res.json({place});
         } catch (e) {
           res.status(500).json({ error: e.message });
         }
@@ -84,7 +84,7 @@ module.exports={
       getOrdersByAdmin: async (req, res) => {
         try {
           const orders = await Order.find({});
-          res.json(orders);
+          res.json({orders});
         } catch (e) {
           res.status(500).json({ error: e.message });
         }
@@ -96,7 +96,7 @@ module.exports={
           let order = await Order.findById(id);
           order.status = status;
           order = await order.save();
-          res.json(order);
+          res.json({order});
         } catch (e) {
           res.status(500).json({ error: e.message });
         }
@@ -125,7 +125,7 @@ module.exports={
             fashionEarnings,
           };
       
-          res.json(earnings);
+          res.json({earnings});
         } catch (e) {
           res.status(500).json({ error: e.message });
         }

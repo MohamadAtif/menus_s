@@ -1,7 +1,7 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:menus_shibeen/auth/screens/auth_screen.dart';
-import 'package:menus_shibeen/auth/services/auth_service.dart';
+import 'package:menus_shibeen/features/auth/screens/auth_screen.dart';
+import 'package:menus_shibeen/features/auth/services/auth_service.dart';
 import 'package:menus_shibeen/common/widgets/custom_button.dart';
 import 'package:menus_shibeen/common/widgets/custom_textfield.dart';
 import 'package:menus_shibeen/utils/global_variables.dart';

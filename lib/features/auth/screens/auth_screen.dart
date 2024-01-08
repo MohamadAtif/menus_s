@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:menus_shibeen/auth/screens/registePage.dart';
+import 'package:menus_shibeen/features/auth/screens/registePage.dart';
 import 'package:menus_shibeen/features/home/presentation/screens/home_screen.dart';
 import 'package:menus_shibeen/utils/global_variables.dart';
 
-import '../../../common/widgets/custom_button.dart';
-import '../../../common/widgets/custom_textfield.dart';
+import '../../../../common/widgets/custom_button.dart';
+import '../../../../common/widgets/custom_textfield.dart';
 
 import '../services/auth_service.dart';
 
@@ -59,7 +59,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalVariables.myTealColor,
+      backgroundColor: GlobalVariables.secondaryColor,
       body: SafeArea(
         child: ListView(
           children: [
@@ -72,15 +72,15 @@ class _AuthScreenState extends State<AuthScreen> {
                   Container(
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
-                    decoration:
-                        const BoxDecoration(color: GlobalVariables.myTealColor),
+                    decoration: const BoxDecoration(
+                        color: GlobalVariables.secondaryColor),
                     child: Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 39),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("WELCOME TO DIAMART",
+                          Text("WELCOME TO MENUS SHEBEEN",
                               style: GoogleFonts.kanit(
                                   fontSize: 20,
                                   color: Colors.white,
@@ -216,18 +216,12 @@ class _AuthScreenState extends State<AuthScreen> {
                                   ),
                                   const SizedBox(height: 10),
                                   CustomButton(
-                                    color: GlobalVariables.myTealColor,
+                                    color: GlobalVariables.secondaryColor,
                                     text: 'Sign In',
                                     onTap: () {
                                       if (_signInFormKey.currentState!
                                           .validate()) {
                                         signInUser();
-                                        Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const HomeScreen()),
-                                            (route) => false);
                                       }
                                     },
                                   ),

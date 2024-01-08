@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const ratingSchema = require("./rating");
+const placeSchema = require("./place");
+
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -34,6 +36,12 @@ const productSchema = new mongoose.Schema({
     type:Date,
     default:Date.now,
   },
+  place:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Place',
+    required:true,
+  },
+  // place: placeSchema,
   ratings: [ratingSchema],
 });
 

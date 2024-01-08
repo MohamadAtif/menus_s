@@ -4,7 +4,7 @@ const auth = require('../middlewares/auth');
 const { sighUp, signIn, tokenIsValid, getUserByID } = require('../controllers/authController');
 
 
- authRouter.post('/api/signup',sighUp)
+authRouter.post('/api/signup',sighUp)
 
 authRouter.post('/api/signin',signIn)
 

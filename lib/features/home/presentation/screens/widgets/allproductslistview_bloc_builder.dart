@@ -11,7 +11,6 @@ class AllProductsListViewBlocBuilder extends StatelessWidget {
     return BlocBuilder<TopRatedProductsCubit, TopRatedProductsState>(
       builder: (context, state) {
         if (state is TopRatedProductsSuccess) {
-          // print(state.products);
           return TopRatedProductsListView(productList: state.products);
         } else if (state is TopRatedProductsFailure) {
           return Text(state.errMessage);

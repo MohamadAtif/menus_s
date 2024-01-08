@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:menus_shibeen/common/widgets/custom_button.dart';
 import 'package:menus_shibeen/common/widgets/search_container.dart';
-import 'package:menus_shibeen/features/home/presentation/screens/widgets/allplacesListView_bloc_builder.dart';
+import 'package:menus_shibeen/features/admin/presentation/screens/addPlaceScreen.dart';
+
 import 'package:menus_shibeen/features/home/presentation/screens/widgets/allproductslistview_bloc_builder.dart';
-import 'package:menus_shibeen/features/home/presentation/screens/widgets/productCardHome.dart';
+import 'package:menus_shibeen/features/home/presentation/screens/widgets/recommendedplaces_bloc_builder.dart';
+
 import 'package:menus_shibeen/features/home/presentation/screens/widgets/top_categories.dart';
 import 'package:menus_shibeen/utils/global_variables.dart';
+import 'package:menus_shibeen/utils/utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -31,16 +35,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
-            TopCategories(),
-            SizedBox(
+            const SizedBox(height: 10),
+            const TopCategories(),
+            const SizedBox(
               height: 10,
             ),
-            SizedBox(
+
+            const SizedBox(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
                 child: Text(
@@ -51,14 +56,27 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // ProductCardOfHomePage(),
-            AllProductsListViewBlocBuilder()
+            const AllProductsListViewBlocBuilder(),
 
+            const RecommendedPlacesListViewBlocBuilder(),
             // CollectionCategory()
             // BestSellerProduct(),
             // TopRated(),
+            CustomButton(
+                color: Colors.black,
+                text: 'log out',
+                onTap: () {
+                  onBackDialog(context);
+                }),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.plus_one),
+          onPressed: () => {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const AddPlaceScreen()))
+              }),
     );
   }
 }

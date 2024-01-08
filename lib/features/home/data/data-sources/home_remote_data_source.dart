@@ -27,7 +27,7 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
 
   @override
   Future<List<Place>> fetchRecommendedPlaces() async {
-    var data = await apiService.get(endPoint: '/api/top-rated-places');
+    var data = await apiService.get(endPoint: '/api/get-all-places');
 
     List<Place> places = getPlacesList(data);
 
@@ -40,11 +40,7 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
     var data = await apiService.get(endPoint: '/api/get-all-products');
 
     List<Product> products = getProductsList(data);
-    // var box = Hive.box<Product>(kTopRatedProductsBox);
-    // box.addAll(products);
-    print('lessa');
     saveProductsDataByHive(products, kTopRatedProductsBox);
-    print('doneeeee');
 
     return products;
   }

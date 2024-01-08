@@ -33,8 +33,8 @@ class HomeReboImple extends HomeRebo {
 
   @override
   Future<Either<Failure, List<Place>>> fetchRecommendedPlaces() async {
-    List<Place> places;
     try {
+      List<Place> places;
       places = homeLocalDataSource.fetchRecommendedPlaces();
       if (places.isNotEmpty) {
         return right(places);

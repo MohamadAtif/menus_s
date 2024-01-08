@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:menus_shibeen/common/widgets/single_product.dart';
-import 'package:menus_shibeen/features/product_details/presentation/screens/product_details_screen.dart';
-import 'package:menus_shibeen/models/product.dart';
+import 'package:menus_shibeen/models/place.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 
-class TopRatedProductsListView extends StatefulWidget {
-  const TopRatedProductsListView({super.key, this.productList});
-  final List<Product>? productList;
+class RecommendedPlacesListView extends StatefulWidget {
+  const RecommendedPlacesListView({super.key, this.placesList});
+  final List<Place>? placesList;
   @override
-  State<TopRatedProductsListView> createState() =>
-      _TopRatedProductsListViewState();
+  State<RecommendedPlacesListView> createState() =>
+      _RecommendedPlacesListViewState();
 }
 
-class _TopRatedProductsListViewState extends State<TopRatedProductsListView> {
+class _RecommendedPlacesListViewState extends State<RecommendedPlacesListView> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,7 +21,7 @@ class _TopRatedProductsListViewState extends State<TopRatedProductsListView> {
           child: Row(
             children: [
               Text(
-                'RECENTLY ADDED',
+                'Recomended Places',
                 style: TextStyle(
                     fontSize: 20,
                     color: Colors.grey.shade800,
@@ -50,28 +49,30 @@ class _TopRatedProductsListViewState extends State<TopRatedProductsListView> {
             height: 225,
             child: ScrollSnapList(
               itemBuilder: (context, index) {
-                final productData = widget.productList![index];
+                final placeData = widget.placesList![index];
                 return Column(
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ProductDetailScreen(
-                                      product: productData,
-                                    )));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => ProductDetailScreen(
+                        //               product: placeData!,
+                        //             )));
                       },
                       child: SingleProduct(
-                        image: productData.images[0],
-                        name: productData.name,
-                        price: productData.price,
+                        image:
+                            'https://images.puma.com/image/upload/q_auto,f_auto,w_1440/regional/%7Eregional%7EDFA%7Eothers%7EKOPs%7EAW23%7EBASKETBALL%7EMB03+TOXIC%7E23AW_Ecom_BB_MB03_Toxic_Full-Bleed-Hero_Large_Desk_1440x500px_2.jpg/fmt/jpg/fmt/png',
+                        // image: 'placeData.images[0],',
+                        name: placeData.name,
+                        // price: placeData.category!
                       ),
                     )
                   ],
                 );
               },
-              itemCount: widget.productList!.length,
+              itemCount: widget.placesList!.length,
               itemSize: 163,
               onItemFocus: (index) {},
               dynamicItemSize: true,

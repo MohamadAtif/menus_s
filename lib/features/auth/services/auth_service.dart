@@ -10,9 +10,10 @@ import 'package:menus_shibeen/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../models/user.dart';
+import '../../../../models/user.dart';
 
 class AuthService {
+  // final _baseUrl = Uri.parse('http://192.168.1.8:4000');
   // sign up user
   void signUpUser({
     required BuildContext context,
@@ -35,7 +36,7 @@ class AuthService {
       );
 
       http.Response res = await http.post(
-        Uri.parse('$uri/api/signup'),
+        Uri.parse('$baseUrl/api/signup'),
         body: user.toJson(),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -50,14 +51,14 @@ class AuthService {
             context,
             'Account Created Successfully!',
           );
-          // Navigator.pushReplacement(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const BottomBar()),
-          // );
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const BottomBar()),
+          );
         },
       );
     } catch (e) {
-      // showSnackBar(context, e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 
@@ -69,7 +70,7 @@ class AuthService {
   }) async {
     try {
       http.Response res = await http.post(
-        Uri.parse('$uri/api/signin'),
+        Uri.parse('$baseUrl/api/signin'),
         body: jsonEncode({
           'email': email,
           'password': password,
@@ -78,7 +79,7 @@ class AuthService {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-      print(res.body);
+      // print(res.body);
       httpErrorHandle(
         response: res,
         context: context,
@@ -94,7 +95,7 @@ class AuthService {
         },
       );
     } catch (e) {
-      // showSnackBar(context, e.toString());
+      showSnackBar(context, e.toString());
     }
   }
 
@@ -111,7 +112,7 @@ class AuthService {
       }
 
       var tokenRes = await http.post(
-        Uri.parse('$uri/tokenIsValid'),
+        Uri.parse('$baseUrl/tokenIsValid'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'x-auth-token': token!
@@ -122,7 +123,7 @@ class AuthService {
 
       if (response == true) {
         http.Response userRes = await http.get(
-          Uri.parse('$uri/'),
+          Uri.parse('$baseUrl/'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'x-auth-token': token

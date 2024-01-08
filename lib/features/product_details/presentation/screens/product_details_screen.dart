@@ -151,6 +151,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           //       //               product: widget.product,
           //       //             ))
           //       //         : ProductDetailsImageSlider(
+          // autoPlayCurve: Curves.fastOutSlowIn,
+          //               enlargeCenterPage: true,
+          //               pageSnapping: true,
+
           //       //             product: widget.product,
           //       //           )),
           //       Divider(

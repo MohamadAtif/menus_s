@@ -6,7 +6,7 @@ const { getAllPlaces, getAllPlacesByCategory, ratePlace, getTopRatedPlaces } = r
 
 placeRouter.get("/api/get-all-places", getAllPlaces);
 
-placeRouter.get("/api/places/", auth, getAllPlacesByCategory);
+placeRouter.get("/api/places/", getAllPlacesByCategory);
 
 placeRouter.post("/api/rate-place", auth, ratePlace);
 
