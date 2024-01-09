@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:menus_shibeen/models/product.dart';
+import 'package:menus_shibeen/models/item.dart';
 
 class Order {
   final String id;
-  final List<Product> products;
+  final List<Item> products;
   final List<int> quantity;
   final String address;
   final String userId;
@@ -40,8 +40,8 @@ class Order {
   factory Order.fromMap(Map<String, dynamic> map) {
     return Order(
       id: map['_id'] ?? '',
-      products: List<Product>.from(
-          map['products']?.map((x) => Product.fromMap(x['product']))),
+      products: List<Item>.from(
+          map['products']?.map((x) => Item.fromMap(x['product']))),
       quantity: List<int>.from(
         map['products']?.map(
           (x) => x['quantity'],

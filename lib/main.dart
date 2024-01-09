@@ -6,14 +6,13 @@ import 'package:menus_shibeen/features/auth/screens/auth_screen.dart';
 import 'package:menus_shibeen/features/auth/services/auth_service.dart';
 import 'package:menus_shibeen/common/widgets/bottom_bar.dart';
 import 'package:menus_shibeen/common/widgets/consts.dart';
-import 'package:menus_shibeen/features/admin/presentation/screens/admin_screen.dart';
+
 import 'package:menus_shibeen/features/admin/screens/admin_screen.dart';
 import 'package:menus_shibeen/features/home/data/rebos/home_rebo_imple.dart';
 import 'package:menus_shibeen/features/home/presentation/manager/recommended_places_cubit/recommended_places_cubit.dart';
 
-import 'package:menus_shibeen/features/home/presentation/manager/topRated_products_cubit/toprated_products_cubit.dart';
 import 'package:menus_shibeen/models/place.dart';
-import 'package:menus_shibeen/models/product.dart';
+
 import 'package:menus_shibeen/models/rating.dart';
 import 'package:menus_shibeen/utils/functions.dart';
 import 'package:menus_shibeen/utils/simple%20bloc%20observer.dart';
@@ -22,12 +21,12 @@ import 'package:provider/provider.dart';
 
 void main() async {
   await Hive.initFlutter();
-  Hive.registerAdapter(ProductAdapter());
+  // Hive.registerAdapter(ProductAdapter());
   Hive.registerAdapter(RatingAdapter());
   Hive.registerAdapter(PlaceAdapter());
 
-  await Hive.openBox<List<Rating>>(kRatingProductsBox);
-  await Hive.openBox<Product>(kTopRatedProductsBox);
+  // await Hive.openBox<List<Rating>>(kRatingProductsBox);
+  // await Hive.openBox<Item>(kTopRatedProductsBox);
   await Hive.openBox<Place>(kRecommendedPlacesBox);
   setupServiceLocator();
 
@@ -69,10 +68,10 @@ class _MyAppState extends State<MyApp> {
             create: (context) =>
                 RecommendedPlacesCubit(getIt.get<HomeReboImple>())
                   ..fetchRecommendedPlaces()),
-        BlocProvider(
-            create: (context) =>
-                TopRatedProductsCubit(getIt.get<HomeReboImple>())
-                  ..fetchTopRatedProducts()),
+        // BlocProvider(
+        //     create: (context) =>
+        //         TopRatedProductsCubit(getIt.get<HomeReboImple>())
+        //           ..fetchTopRatedProducts()),
         //            BlocProvider(
         // create: (context) =>
         //     AllPr(getIt.get<HomeReboImple>())
@@ -82,8 +81,8 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'DiaMart Commerce',
         theme: ThemeData(
-          appBarTheme: AppBarTheme(
-              iconTheme: IconThemeData(color: Colors.grey.shade800)),
+          appBarTheme:
+              const AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),

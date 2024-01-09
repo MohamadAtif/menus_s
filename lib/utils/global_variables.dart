@@ -52,4 +52,22 @@ class GlobalVariables {
       'image': 'assets/images/othersCategory.jpg',
     },
   ];
+
+  static const List<Map<String, String>> itemsCategory = [
+    {
+      'title': 'HotDrinks',
+    },
+    {
+      'title': 'ColdDrinks',
+    },
+    {
+      'title': 'Foods',
+    },
+    {
+      'title': 'Desserts',
+    },
+    {
+      'title': 'Others',
+    },
+  ];
 }

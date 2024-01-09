@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:menus_shibeen/domain/rebos/home_rebo.dart';
-import 'package:menus_shibeen/models/product.dart';
+import 'package:menus_shibeen/models/item.dart';
 import 'package:meta/meta.dart';
 
 part 'top_rated_products_state.dart';

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:menus_shibeen/common/widgets/single_product.dart';
-import 'package:menus_shibeen/features/product_details/presentation/screens/product_details_screen.dart';
-import 'package:menus_shibeen/models/product.dart';
+import 'package:menus_shibeen/features/product_details/presentation/screens/item_details_screen.dart';
+import 'package:menus_shibeen/models/item.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 
 class TopRatedProductsListView extends StatefulWidget {
   const TopRatedProductsListView({super.key, this.productList});
-  final List<Product>? productList;
+  final List<Item>? productList;
   @override
   State<TopRatedProductsListView> createState() =>
       _TopRatedProductsListViewState();
@@ -58,8 +58,8 @@ class _TopRatedProductsListViewState extends State<TopRatedProductsListView> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ProductDetailScreen(
-                                      product: productData,
+                                builder: (context) => ItemDetailScreen(
+                                      item: productData,
                                     )));
                       },
                       child: SingleProduct(

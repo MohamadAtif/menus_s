@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:menus_shibeen/common/widgets/single_product.dart';
+import 'package:menus_shibeen/features/home/presentation/screens/widgets/place_details_view.dart';
 import 'package:menus_shibeen/models/place.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 
@@ -54,17 +55,15 @@ class _RecommendedPlacesListViewState extends State<RecommendedPlacesListView> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => ProductDetailScreen(
-                        //               product: placeData!,
-                        //             )));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PlaceDetailScreen(
+                                      place: placeData,
+                                    )));
                       },
                       child: SingleProduct(
-                        image:
-                            'https://images.puma.com/image/upload/q_auto,f_auto,w_1440/regional/%7Eregional%7EDFA%7Eothers%7EKOPs%7EAW23%7EBASKETBALL%7EMB03+TOXIC%7E23AW_Ecom_BB_MB03_Toxic_Full-Bleed-Hero_Large_Desk_1440x500px_2.jpg/fmt/jpg/fmt/png',
-                        // image: 'placeData.images[0],',
+                        image: placeData.images[0],
                         name: placeData.name,
                         // price: placeData.category!
                       ),

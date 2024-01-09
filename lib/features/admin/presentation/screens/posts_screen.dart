@@ -3,7 +3,7 @@ import 'package:menus_shibeen/common/widgets/image_product.dart';
 import 'package:menus_shibeen/common/widgets/loader_gridview.dart';
 import 'package:menus_shibeen/features/admin/data/service/admin_services.dart';
 import 'package:menus_shibeen/features/admin/presentation/screens/add_product_screen.dart';
-import 'package:menus_shibeen/models/product.dart';
+import 'package:menus_shibeen/models/item.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class PostsScreen extends StatefulWidget {
 }
 
 class _PostsScreenState extends State<PostsScreen> {
-  List<Product>? products;
+  List<Item>? products;
   final AdminServices adminServices = AdminServices();
 
   @override
@@ -27,7 +27,7 @@ class _PostsScreenState extends State<PostsScreen> {
     setState(() {});
   }
 
-  void deleteProduct(Product product, int index) {
+  void deleteProduct(Item product, int index) {
     adminServices.deleteProduct(
       context: context,
       product: product,

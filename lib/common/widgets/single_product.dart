@@ -20,11 +20,14 @@ class SingleProduct extends StatelessWidget {
 
         Column(
       children: [
-        CachedNetworkImage(
-          height: 182,
-          width: 163,
-          imageUrl: image,
-          // s
+        Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(18)),
+          child: CachedNetworkImage(
+            height: 182,
+            width: 163,
+            imageUrl: image,
+            // s
+          ),
         ),
         Text(
           ' ${name.toString()}',
@@ -32,13 +35,13 @@ class SingleProduct extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         ),
-        Text(
-          "${price.toString()} EGP",
-          style: const TextStyle(
-              color: Colors.red, fontFamily: 'Kanit', fontSize: 14),
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-        ),
+        // Text(
+        //   "${price.toString()} EGP",
+        //   style: const TextStyle(
+        //       color: Colors.red, fontFamily: 'Kanit', fontSize: 14),
+        //   overflow: TextOverflow.ellipsis,
+        //   maxLines: 1,
+        // ),
       ],
     );
   }

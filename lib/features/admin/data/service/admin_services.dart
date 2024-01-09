@@ -6,7 +6,7 @@ import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:menus_shibeen/models/place.dart';
-import 'package:menus_shibeen/models/product.dart';
+import 'package:menus_shibeen/models/item.dart';
 import 'package:menus_shibeen/utils/error_handling.dart';
 import 'package:menus_shibeen/utils/global_variables.dart';
 import 'package:menus_shibeen/utils/user_provider.dart';
@@ -19,7 +19,6 @@ class AdminServices {
     required String name,
     required String description,
     required double price,
-    required double quantity,
     required String category,
     required List<File> images,
   }) async {
@@ -36,10 +35,9 @@ class AdminServices {
         imageUrls.add(res.secureUrl);
       }
 
-      Product product = Product(
+      Item product = Item(
         name: name,
         description: description,
-        quantity: quantity,
         images: imageUrls,
         category: category,
         price: price,
@@ -118,9 +116,9 @@ class AdminServices {
   }
 
   // get all the products
-  Future<List<Product>> fetchAllProducts(BuildContext context) async {
+  Future<List<Item>> fetchAllProducts(BuildContext context) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    List<Product> productList = [];
+    List<Item> productList = [];
     try {
       http.Response res =
           await http.get(Uri.parse('$baseUrl/admin/get-products'), headers: {
@@ -134,7 +132,7 @@ class AdminServices {
         onSuccess: () {
           for (int i = 0; i < jsonDecode(res.body).length; i++) {
             productList.add(
-              Product.fromJson(
+              Item.fromJson(
                 jsonEncode(
                   jsonDecode(res.body)[i],
                 ),
@@ -183,7 +181,7 @@ class AdminServices {
 
   void deleteProduct({
     required BuildContext context,
-    required Product product,
+    required Item product,
     required VoidCallback onSuccess,
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);

@@ -5,7 +5,7 @@ import 'package:menus_shibeen/domain/rebos/home_rebo.dart';
 import 'package:menus_shibeen/features/home/data/data-sources/home_local_data_source.dart';
 import 'package:menus_shibeen/features/home/data/data-sources/home_remote_data_source.dart';
 import 'package:menus_shibeen/models/place.dart';
-import 'package:menus_shibeen/models/product.dart';
+import 'package:menus_shibeen/models/item.dart';
 
 class HomeReboImple extends HomeRebo {
   final HomeLocalDataSource homeLocalDataSource;
@@ -50,9 +50,9 @@ class HomeReboImple extends HomeRebo {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> fetchTopRatedProducts() async {
+  Future<Either<Failure, List<Item>>> fetchTopRatedProducts() async {
     try {
-      List<Product> products;
+      List<Item> products;
       products = homeLocalDataSource.fetchTopRatedProducts();
       if (products.isNotEmpty) {
         return right(products);

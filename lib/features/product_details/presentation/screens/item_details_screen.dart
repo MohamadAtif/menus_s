@@ -3,21 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:menus_shibeen/common/widgets/search_container.dart';
 import 'package:menus_shibeen/features/home/presentation/screens/widgets/productCardHome.dart';
-import 'package:menus_shibeen/models/product.dart';
-import 'package:menus_shibeen/utils/global_variables.dart';
+import 'package:menus_shibeen/models/item.dart';
 
-class ProductDetailScreen extends StatefulWidget {
-  final Product product;
-  const ProductDetailScreen({
+class ItemDetailScreen extends StatefulWidget {
+  final Item item;
+  const ItemDetailScreen({
     Key? key,
-    required this.product,
+    required this.item,
   }) : super(key: key);
 
   @override
-  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+  State<ItemDetailScreen> createState() => _ItemDetailScreenState();
 }
 
-class _ProductDetailScreenState extends State<ProductDetailScreen> {
+class _ItemDetailScreenState extends State<ItemDetailScreen> {
   // final ProductDetailsServices productDetailsServices =
   //     ProductDetailsServices();
   // double avgRating = 0;
@@ -44,8 +43,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final productQuantity = widget.product.quantity;
-
     // ToastContext().init(context);
     return Scaffold(
       // appBar: PreferredSize(

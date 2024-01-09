@@ -9,10 +9,12 @@ const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
 const searchRouter = require("./routes/search");
 const placeRouter = require("./routes/place");
+const itemRouter = require("./routes/items");
 
 
 // middleware
 app.use(express.json());
+app.use(itemRouter);
 app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
@@ -21,7 +23,7 @@ app.use(searchRouter);
 app.use(placeRouter);
 
 // Connections
-mongoose.connect('mongodb+srv://mohamad:mohamad@cluster0.razkqoh.mongodb.net/').then(()=>{
+mongoose.connect('mongodb+srv://pedri:pedri@cluster0.razkqoh.mongodb.net/').then(()=>{
     console.log('connected On DataBase succefully')
 }).catch((error)=>{console.log('error on connecting',error)});
 

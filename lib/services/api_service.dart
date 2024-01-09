@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
-//http://192.168.1.8:4000/
+//https://menusserver.onrender.com
+//http://192.168.1.8:6000/
 class ApiService {
   final _baseUrl = Uri.parse('http://192.168.1.8:6000');
   final Dio dio;

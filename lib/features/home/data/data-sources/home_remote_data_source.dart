@@ -1,13 +1,13 @@
 import 'package:menus_shibeen/common/widgets/consts.dart';
 import 'package:menus_shibeen/models/place.dart';
-import 'package:menus_shibeen/models/product.dart';
+import 'package:menus_shibeen/models/item.dart';
 import 'package:menus_shibeen/services/api_service.dart';
 import 'package:menus_shibeen/utils/functions.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<Place>> fetchPlaces();
   Future<List<Place>> fetchRecommendedPlaces();
-  Future<List<Product>> fetchTopRatedProducts();
+  Future<List<Item>> fetchTopRatedProducts();
 }
 
 class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
@@ -36,10 +36,10 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
   }
 
   @override
-  Future<List<Product>> fetchTopRatedProducts() async {
+  Future<List<Item>> fetchTopRatedProducts() async {
     var data = await apiService.get(endPoint: '/api/get-all-products');
 
-    List<Product> products = getProductsList(data);
+    List<Item> products = getProductsList(data);
     saveProductsDataByHive(products, kTopRatedProductsBox);
 
     return products;
@@ -58,11 +58,11 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
     return places;
   }
 
-  List<Product> getProductsList(Map<String, dynamic> data) {
-    List<Product> products = [];
+  List<Item> getProductsList(Map<String, dynamic> data) {
+    List<Item> products = [];
 
     for (var item in data['products']) {
-      products.add(Product.fromMap(item));
+      products.add(Item.fromMap(item));
     }
     return products;
   }

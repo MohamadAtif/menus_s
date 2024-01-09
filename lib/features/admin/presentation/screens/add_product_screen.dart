@@ -22,9 +22,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController quantityController = TextEditingController();
   final AdminServices adminServices = AdminServices();
   bool isLoading = false;
-  String category = 'Mobiles';
+  String category = 'HotDrinks';
   List<File> images = [];
-  final _addProductFormKey = GlobalKey<FormState>();
+  final _addItemFormKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -35,21 +35,21 @@ class _AddProductScreenState extends State<AddProductScreen> {
     quantityController.dispose();
   }
 
-  List<String> productCategories = [
-    'Mobiles',
-    'Cosmetics',
-    'Appliances',
-    'Fashion'
+  List<String> itemsCategories = [
+    'HotDrinks',
+    'ColdDrinks',
+    'Foods',
+    'Desserts',
+    'Others'
   ];
 
   void sellProduct() {
-    if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
+    if (_addItemFormKey.currentState!.validate() && images.isNotEmpty) {
       adminServices.sellProduct(
         context: context,
         name: productNameController.text,
         description: descriptionController.text,
         price: double.parse(priceController.text),
-        quantity: double.parse(quantityController.text),
         category: category,
         images: images,
       );
@@ -85,7 +85,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       ),
       body: SingleChildScrollView(
         child: Form(
-          key: _addProductFormKey,
+          key: _addItemFormKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -170,7 +170,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   child: DropdownButton(
                     value: category,
                     icon: const Icon(Icons.keyboard_arrow_down),
-                    items: productCategories.map((String item) {
+                    items: itemsCategories.map((String item) {
                       return DropdownMenuItem(
                         value: item,
                         child: Text(

@@ -14,6 +14,6 @@ final class TopRatedProductsFailure extends TopRatedProductsState {
 }
 
 final class TopRatedProductsSuccess extends TopRatedProductsState {
-  final List<Product> products;
+  final List<Item> products;
   TopRatedProductsSuccess({required this.products});
 }

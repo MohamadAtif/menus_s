@@ -45,20 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 10,
             ),
 
-            const SizedBox(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                child: Text(
-                  'Recommended',
-                  style: TextStyle(fontFamily: 'Kanit', fontSize: 20),
-                ),
-              ),
-            ),
+            const RecommendedPlacesListViewBlocBuilder(),
 
-            // ProductCardOfHomePage(),
             const AllProductsListViewBlocBuilder(),
 
-            const RecommendedPlacesListViewBlocBuilder(),
             // CollectionCategory()
             // BestSellerProduct(),
             // TopRated(),

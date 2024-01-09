@@ -3,30 +3,27 @@ import 'dart:convert';
 import 'package:hive/hive.dart';
 import 'package:menus_shibeen/models/rating.dart';
 
-part 'product.g.dart';
+// part 'item.g.dart';
 
 @HiveType(typeId: 0)
-class Product extends HiveObject {
+class Item extends HiveObject {
   @HiveField(0)
   final String name;
   @HiveField(1)
   final String description;
   @HiveField(2)
-  final double quantity;
-  @HiveField(3)
   final List<String> images;
-  @HiveField(4)
+  @HiveField(3)
   final String category;
-  @HiveField(5)
+  @HiveField(4)
   final double price;
-  @HiveField(6)
+  @HiveField(5)
   final String? id;
-  @HiveField(7)
+  @HiveField(6)
   final List<Rating>? rating;
-  Product({
+  Item({
     required this.name,
     required this.description,
-    required this.quantity,
     required this.images,
     required this.category,
     required this.price,
@@ -38,7 +35,6 @@ class Product extends HiveObject {
     return {
       'name': name,
       'description': description,
-      'quantity': quantity,
       'images': images,
       'category': category,
       'price': price,
@@ -47,11 +43,10 @@ class Product extends HiveObject {
     };
   }
 
-  factory Product.fromMap(Map<String, dynamic> map) {
-    return Product(
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
       name: map['name'] ?? '',
       description: map['description'] ?? '',
-      quantity: map['quantity']?.toDouble() ?? 0.0,
       images: List<String>.from(map['images']),
       category: map['category'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
@@ -68,6 +63,5 @@ class Product extends HiveObject {
 
   String toJson() => json.encode(toMap());
 
-  factory Product.fromJson(String source) =>
-      Product.fromMap(json.decode(source));
+  factory Item.fromJson(String source) => Item.fromMap(json.decode(source));
 }
